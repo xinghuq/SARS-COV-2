@@ -1,0 +1,14 @@
+---
+title: "License"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+[Creative Commons][cc]
+[choose]: http://choosealicense.com/
+[cc]: https://creativecommons.org/choose/
+
+`CITATION`: Qin. X, 2020, Spatial genetic structure of SARS-CoV-2.

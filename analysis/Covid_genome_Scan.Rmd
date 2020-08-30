@@ -1,0 +1,64 @@
+---
+title: "Covid-19 genome scan"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Detecting loci under selection
+
+In line with the spatial genetic structure analysis, and to detect the genome regions under selection or involved in adaptation, we carried out the PCA-based genome scan on the genome-wide SNPs using pcadapt (Duforet-Frebourg, et al. 2016; Luu, et al. 2017). We filtered the SNPs with minor allele frequency (MAF) >0.05 and kept 5 principal components for use of calculating the Mahalanobis distance to identify the outliers as the candidate loci that might be under selection. We set the threshold at alpha <4E-11 to identify the outliers. In addition, we also carried out the genome scan for all variant sites (CNRs, the copy number of references) to see which genes were under selection. The analysis was carried out using the pcadapt package (Luu, et al. 2017).
+
+
+```{r library, echo=FALSE,message=FALSE,warning=FALSE}
+
+library("pcadapt")
+library("qvalue")
+library("ggplot2")
+
+infile <- file.path("data", "Virus_genome_Scan.RData")
+load(infile)
+```
+
+
+```{r fig1,fig.height = 8, fig.width = 8.5, fig.align = "center",echo=FALSE,message=FALSE,warning=FALSE}
+plot(viruspcadapt, option = "screeplot")
+```
+Fig. 1 Screen plot for the variations
+Fig. 1 shows that the first 5 PCs account for almost the largest variance of the total variations based on the whole genome wide SNPs. 
+```{r fig2, echo=FALSE, fig.align="center", fig.height=8, fig.width=8.5, message=FALSE, warning=FALSE}
+plot(viruspcadapt, option = "scores")
+```
+Fig. 2 Score plot for the variations
+
+Fig. 2 is also the genetic structure presented in ["Spatial genetic structure of SARS-CoV-2"](link="Spatial_structure.html") .
+```{r fig3, fig.height = 8, fig.width = 8.5, fig.align = "center",echo=FALSE,message=FALSE,warning=FALSE}
+plot(viruspcadapt, option = "manhattan",K=5,threshold = 4E-11)
+```
+Fig. 3 Manhattan plot for the variations with a threshold of 4E-11 using the first 5 PCs
+
+This plot presents the -log(q-value) of SNPs under selection. Detailed list of the SNPs corresponding to the genes and positions is presented in our MS.
+
+```{r fig4, fig.height = 8, fig.width = 8.5, fig.align = "center",echo=FALSE,message=FALSE,warning=FALSE}
+plot(viruspcadapt, option = "qqplot")
+```
+Fig. 4 qq-plot for the variations
+
+The genomic position of SARS-Covid-2 under selection:
+```{r summary, echo=FALSE}
+library(qvalue)
+qval <- qvalue(viruspcadapt$pvalues)$qvalues
+  alpha =1E-323
+outliers <- which(qval < alpha)
+(outliers)
+```
+Detailed list of the SNPs corresponding to the genes and positions is presented in our MS.
+
+This is a method associated with principal components. Therefore, this approach identifies loci that contribute to the genetic sturtcure of 3,736 complete genomes SARS-Covid-2.

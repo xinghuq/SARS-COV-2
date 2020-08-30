@@ -1,0 +1,21 @@
+name: "Global spatial genetic structure of SARS-CoV-2"
+output_dir: ../docs
+navbar:
+  title: "Covid-19-genomic-variation"
+  left:
+  - text: Home
+    href: index.html
+  - text: Spatial genetic structure of SARS-CoV-2
+    href: Spatial_structure.html
+  - text: Covid-19 genome scan
+    href: Covid_genome_Scan.html
+  - text: About
+    href: about.html
+  - text: License
+    href: license.html
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate

@@ -1,0 +1,11 @@
+---
+title: "About "
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+This is the website presenting the genetic structure of 
+SARS-covid-2.
