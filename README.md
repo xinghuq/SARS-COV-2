@@ -1,5 +1,4 @@
 # Covid-19-genomic-variation
 
-A [workflowr][] project.
 
-[workflowr]: https://github.com/jdblischak/workflowr
+https://xinghuq.github.io/SARS-COV-2/
