@@ -16,6 +16,17 @@ Successive transmission of SARS-CoV-2 has caused a devastating influence on huma
 ## Methods
 We identified genome-wide variant sites from 3,736 complete genomes of SARS-CoV-2 isolates from 62 geographic regions. To trace the origin and migration of SARS-CoV-2 on a local and regional basis, we carried out spatial genetic analysis of whole-genome variants, including single-nucleotide polymorphisms (SNPs) and copy number of references (CNRs). Further, we conducted the spatial variance-based genome scan on these genome-wide variants using pcadapt to detect the genome regions under selection or involved in host adaptation. 
 
+```{r fig1, fig.height = 8, fig.width = 8.5, fig.align = "center",echo=FALSE,message=FALSE,warning=FALSE}
+library(PCAviz)
+library(plotly)
+infile <- file.path("data", "PCA_covid19_geo_popres_coord_update_country_code_13_04.RData")
+load(infile)
+plot(PCAsnp_covid19_geo_popres,coords = c("lon","lat"),plotly=TRUE,plot.title=NULL,group = "Country.abbrv",
+     label = NULL,overlay =overlay_map_world)
+
+```
+Fig. 1. SARS-Cov-2 sampling regions. The abbreviations correspond to the ISO country (region) code.
+
 ## Findings
 Spatial genetic variations indicate that the viruses from 62 regions presented a significant genetic structure with several clusters (four clusters in SNPs, and three clusters in CNRs) showing strong genetic differentiation. Notably, whole-genome SNP analysis revealed a unique cluster in America, Canada, and Australia isolates, while this cluster was not found in other geographic regions, indicating the possibility of isolation due to distance or through selection. Analysis of genome-wide copy number of references (CNRs) uncovered the nuanced spatial genetic variations of SARS-CoV-2 associated with migration and transmission. Genome scan results showed that SARS-CoV-2 has an unprecedented rapid evolution with numbers of loci that were potentially under selection. Remarkably, S, E, and M genes showed evidence of strong selection than other genes among genome-wide variant sites.
 
